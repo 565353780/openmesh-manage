@@ -54,6 +54,19 @@ const bool IndexBoundary::addEdge(IndexEdge &edge, const bool &ignore_point) {
   return false;
 }
 
+const std::vector<float> IndexBoundary::toPointVec() {
+  std::vector<float> point_vec;
+  point_vec.reserve(points.size() * 3);
+
+  for (int i = 0; i < points.size(); ++i) {
+    point_vec.emplace_back(points[i].x);
+    point_vec.emplace_back(points[i].y);
+    point_vec.emplace_back(points[i].z);
+  }
+
+  return point_vec;
+}
+
 const bool IndexBoundary::outputBoundaryIdxs(const int &info_level,
                                              const int &single_line_idx_num) {
   std::string line_start = "";

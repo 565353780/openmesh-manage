@@ -2,6 +2,7 @@
 
 #include "index_edge.h"
 #include <deque>
+#include <vector>
 
 class IndexBoundary {
 public:
@@ -10,6 +11,8 @@ public:
   const std::pair<int, IndexPoint> searchConnectedPoint(IndexEdge &edge);
 
   const bool addEdge(IndexEdge &edge, const bool &ignore_point = true);
+
+  const std::vector<float> toPointVec();
 
   const bool outputBoundaryIdxs(const int &info_level = 0,
                                 const int &single_line_idx_num = 10);

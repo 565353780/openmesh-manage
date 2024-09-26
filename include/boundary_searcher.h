@@ -20,4 +20,6 @@ public:
 
   const bool searchBoundaries(const std::string &mesh_file_path,
                               std::vector<IndexBoundary> &boundary_vec);
+  const bool searchBoundaries(const std::string &mesh_file_path,
+                              std::vector<std::vector<float>> &boundary_vec);
 };

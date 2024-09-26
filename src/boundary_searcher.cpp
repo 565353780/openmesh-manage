@@ -125,3 +125,23 @@ BoundarySearcher::searchBoundaries(const std::string &mesh_file_path,
 
   return true;
 }
+
+const bool BoundarySearcher::searchBoundaries(
+    const std::string &mesh_file_path,
+    std::vector<std::vector<float>> &boundary_point_vec) {
+  boundary_point_vec.clear();
+
+  std::vector<IndexBoundary> boundary_vec;
+  if (!searchBoundaries(mesh_file_path, boundary_vec)) {
+    std::cerr << "[ERROR][BoundarySearcher::searchBoundaries]" << std::endl;
+    std::cout << "\t searchBoundaries failed!" << std::endl;
+
+    return false;
+  }
+
+  for (int i = 0; i < boundary_vec.size(); ++i) {
+    boundary_point_vec.emplace_back(boundary_vec[i].toPointVec());
+  }
+
+  return true;
+}
