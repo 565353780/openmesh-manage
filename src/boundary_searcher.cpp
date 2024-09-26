@@ -1,4 +1,5 @@
 #include "boundary_searcher.h"
+#include "index_boundary.h"
 #include "index_point.h"
 #include <filesystem>
 
@@ -45,8 +46,63 @@ BoundarySearcher::toBoundaryEdgeVec(const std::string &mesh_file_path,
   return true;
 }
 
-const bool BoundarySearcher::toOrderedBoundaryPointIdxVec(
-    const std::vector<std::pair<int, int>> &boundary_edge_idx_pair_vec,
-    std::vector<int> boundary_point_idx_vec) {
+const bool
+BoundarySearcher::toBoundaryVec(std::vector<IndexEdge> &boundary_edge_vec,
+                                std::vector<IndexBoundary> &boundary_vec) {
+  boundary_vec.clear();
+
+  const int boundary_edge_num = boundary_edge_vec.size();
+  if (boundary_edge_num == 0) {
+    return true;
+  }
+
+  if (boundary_edge_num == 1) {
+    IndexBoundary boundary;
+    boundary.addEdge(boundary_edge_vec[0]);
+
+    boundary_vec.emplace_back(boundary);
+    return true;
+  }
+
+  std::vector<int> remained_boundary_edge_idx_vec;
+  remained_boundary_edge_idx_vec.reserve(boundary_edge_vec.size());
+  for (int i = 0; i < boundary_edge_num; ++i) {
+    remained_boundary_edge_idx_vec.emplace_back(i);
+  }
+
+  bool new_edge_added = false;
+
+  while (remained_boundary_edge_idx_vec.size() > 0) {
+    while (new_edge_added) {
+      new_edge_added = false;
+
+      for (int i = remained_boundary_edge_idx_vec.size() - 1; i >= 0; --i) {
+        if (boundary_vec.back().addEdge(
+                boundary_edge_vec[remained_boundary_edge_idx_vec[i]])) {
+          new_edge_added = true;
+
+          remained_boundary_edge_idx_vec.erase(
+              remained_boundary_edge_idx_vec.begin() + i);
+
+          break;
+        }
+      }
+    }
+
+    if (remained_boundary_edge_idx_vec.size() == 0) {
+      break;
+    }
+
+    IndexBoundary new_boundary;
+    new_boundary.addEdge(
+        boundary_edge_vec[remained_boundary_edge_idx_vec.back()]);
+
+    boundary_vec.emplace_back(new_boundary);
+
+    remained_boundary_edge_idx_vec.pop_back();
+
+    new_edge_added = true;
+  }
+
   return true;
 }

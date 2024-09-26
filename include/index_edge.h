@@ -5,14 +5,18 @@
 class IndexEdge {
 public:
   IndexEdge(){};
-  IndexEdge(const IndexPoint &start_point, const IndexPoint &end_point);
+  IndexEdge(const IndexPoint &new_start_point, const IndexPoint &new_end_point);
+
+  const bool isPoint();
+
+  const int searchIdx(const int &idx);
+  const int searchIdx(const IndexPoint &point);
+
+  const IndexPoint point(const int &idx);
 
   const bool outputInfo(const int &info_level = 0);
 
-  IndexPoint start_point() { return start_point_; }
-  IndexPoint end_point() { return end_point_; }
-
-private:
-  IndexPoint start_point_;
-  IndexPoint end_point_;
+public:
+  IndexPoint start_point;
+  IndexPoint end_point;
 };

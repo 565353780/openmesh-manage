@@ -2,12 +2,12 @@
 #include <iostream>
 #include <string>
 
-IndexPoint::IndexPoint(const int &idx, const float &x, const float &y,
-                       const float &z) {
-  idx_ = idx;
-  x_ = x;
-  y_ = y;
-  z_ = z;
+IndexPoint::IndexPoint(const int &new_idx, const float &new_x,
+                       const float &new_y, const float &new_z) {
+  idx = new_idx;
+  x = new_x;
+  y = new_y;
+  z = new_z;
 }
 
 const bool IndexPoint::outputInfo(const int &info_level) {
@@ -17,10 +17,10 @@ const bool IndexPoint::outputInfo(const int &info_level) {
   }
 
   std::cout << line_start << "[INFO][IndexPoint::outputInfo]" << std::endl;
-  std::cout << line_start << "\t idx: " << idx_ << std::endl;
-  std::cout << line_start << "\t x: " << x_ << std::endl;
-  std::cout << line_start << "\t y: " << y_ << std::endl;
-  std::cout << line_start << "\t z: " << z_ << std::endl;
+  std::cout << line_start << "\t idx: " << idx << std::endl;
+  std::cout << line_start << "\t x: " << x << std::endl;
+  std::cout << line_start << "\t y: " << y << std::endl;
+  std::cout << line_start << "\t z: " << z << std::endl;
 
   return true;
 }
