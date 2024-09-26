@@ -106,3 +106,22 @@ BoundarySearcher::toBoundaryVec(std::vector<IndexEdge> &boundary_edge_vec,
 
   return true;
 }
+
+const bool
+BoundarySearcher::searchBoundaries(const std::string &mesh_file_path,
+                                   std::vector<IndexBoundary> &boundary_vec) {
+  std::vector<IndexEdge> boundary_edge_vec;
+  if (!toBoundaryEdgeVec(mesh_file_path, boundary_edge_vec)) {
+    std::cerr << "[ERROR][BoundarySearcher::searchBoundaries]" << std::endl;
+    std::cerr << "\t toBoundaryEdgeVec failed!" << std::endl;
+    return false;
+  }
+
+  if (!toBoundaryVec(boundary_edge_vec, boundary_vec)) {
+    std::cerr << "[ERROR][BoundarySearcher::searchBoundaries]" << std::endl;
+    std::cerr << "\t toBoundaryVec failed!" << std::endl;
+    return false;
+  }
+
+  return true;
+}

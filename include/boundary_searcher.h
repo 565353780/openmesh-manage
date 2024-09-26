@@ -17,4 +17,7 @@ public:
 
   const bool toBoundaryVec(std::vector<IndexEdge> &boundary_edge_vec,
                            std::vector<IndexBoundary> &boundary_vec);
+
+  const bool searchBoundaries(const std::string &mesh_file_path,
+                              std::vector<IndexBoundary> &boundary_vec);
 };
