@@ -15,7 +15,13 @@ file(GLOB_RECURSE SRC ./src/*.cpp)
 list(FILTER SRC EXCLUDE REGEX "main.cpp")
 
 add_executable(${PROJECT_NAME} ./src/main.cpp ${SRC})
+add_library(openmesh_manage SHARED ${SRC})
+
 
 target_link_libraries(${PROJECT_NAME}
+  ${CMAKE_CURRENT_SOURCE_DIR}/${OpenMeshROOT}/build/Build/lib/libOpenMeshCore.so
+  ${CMAKE_CURRENT_SOURCE_DIR}/${OpenMeshROOT}/build/Build/lib/libOpenMeshTools.so)
+
+target_link_libraries(openmesh_manage PUBLIC
   ${CMAKE_CURRENT_SOURCE_DIR}/${OpenMeshROOT}/build/Build/lib/libOpenMeshCore.so
   ${CMAKE_CURRENT_SOURCE_DIR}/${OpenMeshROOT}/build/Build/lib/libOpenMeshTools.so)

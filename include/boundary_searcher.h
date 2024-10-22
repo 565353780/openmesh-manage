@@ -2,11 +2,9 @@
 
 #include "index_boundary.h"
 #include "index_edge.h"
-#include <OpenMesh/Core/IO/MeshIO.hh>
-#include <OpenMesh/Core/Mesh/TriMesh_ArrayKernelT.hh>
+
 #include <string>
 
-typedef OpenMesh::TriMesh_ArrayKernelT<> TriMesh;
 
 class BoundarySearcher {
 public:

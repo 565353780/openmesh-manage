@@ -2,6 +2,11 @@
 #include "index_boundary.h"
 #include "index_point.h"
 #include <filesystem>
+#include <OpenMesh/Core/IO/MeshIO.hh>
+#include <OpenMesh/Core/Mesh/TriMesh_ArrayKernelT.hh>
+
+typedef OpenMesh::TriMesh_ArrayKernelT<> TriMesh;
+
 
 const bool
 BoundarySearcher::toBoundaryEdgeVec(const std::string &mesh_file_path,

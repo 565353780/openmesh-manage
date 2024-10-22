@@ -1,5 +1,6 @@
 #include "boundary_searcher.h"
 #include <string>
+#include <iostream>
 
 int main(int argc, char **argv) {
   const std::string mesh_file_path = "/home/chli/Downloads/bunny_pgr_crop.ply";
