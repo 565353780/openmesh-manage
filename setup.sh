@@ -1,4 +1,3 @@
-
 ROOT=$PWD
 
 cd ../openmesh-manage/3rd/OpenMesh-11.0.0/
